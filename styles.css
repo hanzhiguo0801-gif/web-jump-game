@@ -1,0 +1,232 @@
+:root {
+  color-scheme: light;
+  font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  --ink: #21405f;
+  --muted: #6d86a2;
+  --card: rgba(255, 255, 255, 0.82);
+  --accent: #ff9f68;
+  --accent-strong: #ff7d51;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background: linear-gradient(145deg, #bde9ff 0%, #dff7ec 46%, #fff0c8 100%);
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: -1;
+  content: "";
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  filter: blur(2px);
+}
+
+body::before {
+  width: 260px;
+  height: 90px;
+  top: 9%;
+  left: 7%;
+}
+
+body::after {
+  width: 320px;
+  height: 110px;
+  right: 8%;
+  bottom: 12%;
+}
+
+.game-shell {
+  width: min(1100px, calc(100vw - 28px));
+  margin: 0 auto;
+  padding: 28px 0;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: #4aa6c7;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 48px);
+  letter-spacing: 0.02em;
+}
+
+.score-card {
+  min-width: 112px;
+  padding: 14px 18px;
+  text-align: center;
+  background: var(--card);
+  border: 2px solid rgba(255, 255, 255, 0.86);
+  border-radius: 22px;
+  box-shadow: 0 14px 30px rgba(77, 137, 164, 0.16);
+  backdrop-filter: blur(8px);
+}
+
+.score-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.score-card strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--accent-strong);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.stage-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 8px solid rgba(255, 255, 255, 0.65);
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.18));
+  box-shadow: 0 28px 70px rgba(42, 112, 148, 0.22);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(65, 125, 154, 0.18);
+  backdrop-filter: blur(5px);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.panel {
+  width: min(360px, 100%);
+  padding: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.94);
+  border: 3px solid #fff;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(66, 112, 136, 0.24);
+}
+
+.result-label {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.panel h2 {
+  margin: 0 0 18px;
+  color: var(--accent-strong);
+  font-size: 44px;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  padding: 13px 26px;
+  color: white;
+  font: inherit;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border-radius: 999px;
+  box-shadow: 0 12px 22px rgba(255, 125, 81, 0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 26px rgba(255, 125, 81, 0.34);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr minmax(160px, 280px);
+  gap: 18px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 2px solid rgba(255, 255, 255, 0.82);
+  border-radius: 24px;
+  box-shadow: 0 14px 30px rgba(77, 137, 164, 0.14);
+}
+
+.controls p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.power-meter {
+  height: 16px;
+  overflow: hidden;
+  background: rgba(109, 134, 162, 0.16);
+  border-radius: 999px;
+}
+
+#powerBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #6bd6ae, #ffe08a, var(--accent-strong));
+  border-radius: inherit;
+  transition: width 0.05s linear;
+}
+
+@media (max-width: 720px) {
+  .game-shell {
+    width: min(100vw - 18px, 1100px);
+    padding: 12px 0;
+  }
+
+  .topbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .topbar > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .score-card {
+    min-width: 0;
+  }
+
+  .stage-wrap {
+    border-width: 5px;
+    border-radius: 24px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}
