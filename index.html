@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跳一跳网页版</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="topbar">
+      <div>
+        <p class="eyebrow">Jump Game</p>
+        <h1>跳一跳网页版</h1>
+      </div>
+      <div class="score-card">
+        <span>分数</span>
+        <strong id="score">0</strong>
+      </div>
+      <div class="score-card">
+        <span>最高分</span>
+        <strong id="bestScore">0</strong>
+      </div>
+    </section>
+
+    <section class="stage-wrap">
+      <canvas id="gameCanvas" width="960" height="540" aria-label="跳一跳游戏画布"></canvas>
+      <div id="overlay" class="overlay hidden">
+        <div class="panel">
+          <p id="resultLabel" class="result-label">游戏结束</p>
+          <h2 id="finalScore">0 分</h2>
+          <button id="restartButton" type="button">再来一局</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <p>按住鼠标左键或空格蓄力，松开跳跃。蓄力越久，跳得越远。</p>
+      <div class="power-meter" aria-hidden="true">
+        <div id="powerBar"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
